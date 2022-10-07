@@ -62,7 +62,7 @@ class ConfirmationSlider extends StatefulWidget {
     this.sliderButtonContent = const Icon(
       Icons.chevron_right,
       color: Colors.white,
-      size: 35,
+      size: 36,
     ),
     this.text = "Slide to confirm",
     this.textStyle,
@@ -72,7 +72,7 @@ class ConfirmationSlider extends StatefulWidget {
     this.foregroundShape,
     this.backgroundShape,
     this.stickToEnd = false,
-  }) : assert(height >= 25 && width >= 250);
+  }) : assert(height >= 25 && width >= 50);
 
   @override
   State<StatefulWidget> createState() {
@@ -148,8 +148,8 @@ class ConfirmationSliderState extends State<ConfirmationSlider> {
     if (widget.shadow == null) {
       shadow = BoxShadow(
         color: Colors.black38,
-        offset: Offset(0, 2),
-        blurRadius: 2,
+        offset: Offset(0, 1),
+        blurRadius: 1,
         spreadRadius: 0,
       );
     } else {
@@ -171,7 +171,7 @@ class ConfirmationSliderState extends State<ConfirmationSlider> {
       curve: Curves.ease,
       height: widget.height,
       width: widget.width,
-      padding: EdgeInsets.all(5),
+      padding: EdgeInsets.all(2),
       decoration: BoxDecoration(
         borderRadius: widget.backgroundShape ?? BorderRadius.all(Radius.circular(widget.height)),
         color: widget.backgroundColorEnd != null ? this.calculateBackground() : widget.backgroundColor,
@@ -179,16 +179,18 @@ class ConfirmationSliderState extends State<ConfirmationSlider> {
       ),
       child: Stack(
         children: <Widget>[
-          Center(
+          Positioned(
+            right: 20.0,
             child: Text(
               widget.text,
               style: style,
+              textAlign: TextAlign.center,
             ),
           ),
           Positioned(
             left: widget.height / 2,
             child: AnimatedContainer(
-              height: widget.height - 10,
+              height: widget.height - 4,
               width: getPosition(),
               duration: Duration(milliseconds: _duration),
               curve: Curves.ease,
@@ -214,8 +216,8 @@ class ConfirmationSliderState extends State<ConfirmationSlider> {
                 sliderReleased(details);
               },
               child: Container(
-                height: widget.height - 10,
-                width: widget.height - 10,
+                height: widget.height - 4,
+                width: widget.height - 4,
                 decoration: BoxDecoration(
                   borderRadius: widget.foregroundShape ?? BorderRadius.all(Radius.circular(widget.height / 2)),
                   color: widget.foregroundColor,
