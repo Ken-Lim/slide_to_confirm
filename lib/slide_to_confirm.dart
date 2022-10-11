@@ -180,11 +180,17 @@ class ConfirmationSliderState extends State<ConfirmationSlider> {
       child: Stack(
         children: <Widget>[
           Positioned(
-            right: 20.0,
-            child: Text(
-              widget.text,
-              style: style,
-              textAlign: TextAlign.center,
+            right: widget.height / 2,
+            child: Container(
+              width: widget.width - widget.height * 1.5,
+              height: widget.height,
+              child: Center(
+                child: Text(
+                  widget.text,
+                  style: style,
+                  textAlign: TextAlign.center,
+                ),
+              ),
             ),
           ),
           Positioned(
